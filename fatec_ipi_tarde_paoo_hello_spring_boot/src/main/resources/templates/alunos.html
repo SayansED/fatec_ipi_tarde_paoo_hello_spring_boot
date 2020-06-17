@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width" />
+<title>Hello Spring Boot</title>
+<link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"
+	rel="stylesheet" />
+<link th:href="@{/webjars/bootstrap/css/bootstrap-theme.min.css}"
+	rel="stylesheet" />
+</head>
+<body>
+	<div class="panel panel-default" style="margin: 10px">
+		<div class="panel-heading">
+			<h1 class="panel-title">Alunos</h1>
+		</div>
+		<div class="panel-body">
+		<form class="form-inline" method="post" style="margin: 20px 0" th:action="@{/alunos}" th:object="${aluno}">
+			<div class="form-group">
+				<input type="text" class="form-control" placeholder="Nome" th:field="*{nome}"/>
+				<input type="text" class="form-control" placeholder="Media" th:field="*{mediaNotas}"/>
+				<button type="submit" class="btn btn-primary">Adicionar</button>
+			</div>
+		</form>
+		
+			<table class="table" table-striped table-hover>
+				<thead>
+					<tr>
+						<td>Nome</td>
+						<td>Média</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="aluno: ${alunos}">
+						<td th:text="${aluno.nome}"></td>
+						<td th:text="${aluno.mediaNotas}"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</body>
+</html>
